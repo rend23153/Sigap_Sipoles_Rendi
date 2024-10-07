@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "sigap_sipoles_react_native",
-    "slug": "sigap_sipoles_react_native",
+    "name": "Sigap Sipoles",
+    "slug": "sigap_sipoles",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "sigap_sipoles",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
