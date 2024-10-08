@@ -39,7 +39,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerTintColor: '#23ACE3', headerShadowVisible: false, headerTitleAlign: 'center', headerBackTitleVisible: false,      headerTitleStyle: {
+      <Stack screenOptions={{ headerTintColor: '#23ACE3', headerShadowVisible: false, headerTitleAlign: 'center', headerBackTitleVisible: false,  headerTitleStyle: {
             fontFamily: 'Outfit-SemiBold',
             fontSize: 20,
           },}}>
@@ -49,8 +49,9 @@ export default function RootLayout() {
         <Stack.Screen name="detail-order" options={{ title:'Detail Order'}}/>
         <Stack.Screen name="product-list" options={{ title:'Product List'}}/>
         <Stack.Screen name="account-list" options={{ title:'Account List'}}/>
-        <Stack.Screen name="vendor-add" options={{ title:'Add Vendor'}}/>
-        <Stack.Screen name="product-add" options={{ title:'Add Product'}}/>
+        <Stack.Screen name="profile-settings" options={{ title:'Profile Settings'}}/>
+        <Stack.Screen name="vendor-add" options={{ animation: 'slide_from_bottom', title:'Add Vendor'}}/>
+        <Stack.Screen name="product-add" options={{ animation: 'slide_from_bottom', title:'Add Product'}}/>
       </Stack>
     </ThemeProvider>
   );

@@ -46,7 +46,7 @@ const OrderListScreen = () => {
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
-        initialLayout={{ width: 400 }}
+        initialLayout={{ width: 100 }}
         renderTabBar={props => (
           <TabBar
             {...props}

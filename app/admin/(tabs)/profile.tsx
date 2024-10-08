@@ -1,14 +1,15 @@
-import { View, Text, Switch, } from 'react-native';
+import { View, Text, Switch, TouchableOpacity, } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Image, Platform } from 'react-native';
-import { FlatList, TouchableOpacity, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { FlatList, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useColorScheme } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { images } from '@constants/images';
 import { Colors } from '@/constants/Colors';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
+import { Link } from 'expo-router';
 
 
 const ProfilesScreen = () => {  
@@ -75,6 +76,8 @@ const ProfilesScreen = () => {
               GENERAL
             </ThemedText>
 
+            <Link href="/admin/profile-settings" asChild>
+            <TouchableOpacity>
             <View className="flex-row justify-between  items-center shadow-sm shadow-grey  px-2 py-1.5" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
               <View className='bg-[#DEF3FB] p-2 rounded-lg'>
               <Ionicons name="create-outline" size={30} color="#23ACE3" />
@@ -91,6 +94,8 @@ const ProfilesScreen = () => {
               <Ionicons name="chevron-forward-outline" size={30} color="#9ca3af" />
               
             </View>
+            </TouchableOpacity>
+            </Link>
 
             <View className="flex-row justify-between  items-center shadow-sm shadow-grey  px-2 py-1.5" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
               <View className='bg-[#FFE1E9] p-2 rounded-lg'>

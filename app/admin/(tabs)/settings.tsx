@@ -21,19 +21,19 @@ const SettingsScreen = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor }}>
       <View className="px-5 my-6  space-y-6  " >
         <View>
-            <ThemedText className="text-3xl font-osemibold">
+            <ThemedText className="text-2xl font-osemibold">
               Settings
             </ThemedText>
         </View>
 
         <View>
-            <ThemedText className="text-2xl font-omedium">
+            <ThemedText className="text-xl font-omedium">
               Preferences
             </ThemedText>
-            <View className="flex-row my-2  rounded-3xl shadow-sm shadow-grey elevation-3 px-5 py-3" style={[{ backgroundColor: cardBackgroundColor }]}>
-              <TabBarIcon name={'contrast'} color={'#23ACE3'} />
-              <View className='flex-1 justify-between flex-row'>
-                <ThemedText className=" mx-3 my-1 text-xl font-oregular">
+            <View className="flex-row my-2  items-center px-5 py-2" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 30, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
+              <TabBarIcon name={'contrast'} size={24} color={'#23ACE3'} />
+              <View className='flex-1 justify-between flex-row items-center'>
+                <ThemedText className=" mx-3 my-1 text-base font-oregular">
                   Dark Mode
                 </ThemedText>
                 <Switch>
@@ -45,14 +45,32 @@ const SettingsScreen = () => {
         </View>
 
         <View>
-            <ThemedText className="text-2xl font-omedium">
+            <ThemedText className="text-xl font-omedium">
               Notification
             </ThemedText>
-            <View className="flex-row my-2 rounded-3xl shadow-sm shadow-grey elevation-3 px-5 py-3" style={[{ backgroundColor: cardBackgroundColor }]}>
-              <TabBarIcon name={'notifications-outline'} color={'#23ACE3'} />
-              <View className='flex-1 justify-between flex-row'>
-                <ThemedText className=" mx-3 my-1 text-xl font-oregular">
+            <View className="flex-row my-2  items-center px-5 py-2" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 30, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
+              <TabBarIcon name={'notifications-outline'} size={24} color={'#23ACE3'} />
+              <View className='flex-1 justify-between flex-row items-center'>
+                <ThemedText className=" mx-3 my-1 text-base font-oregular">
                   Push Notification
+                </ThemedText>
+                <Switch>
+                  
+                </Switch>
+              </View>
+              
+            </View>
+        </View>
+
+        <View>
+            <ThemedText className="text-xl font-omedium">
+              About
+            </ThemedText>
+            <View className="flex-row my-2  items-center px-5 py-2" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 30, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
+              <TabBarIcon name={'notifications-outline'} size={24} color={'#23ACE3'} />
+              <View className='flex-1 justify-between flex-row items-center'>
+                <ThemedText className=" mx-3 my-1 text-base font-oregular">
+                  About
                 </ThemedText>
                 <Switch>
                   
