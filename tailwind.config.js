@@ -15,7 +15,8 @@ module.exports = {
         oblack: ['Outfit-Black', 'sans-serif'],
       },
       colors: {
-        originblue:[ '#23ACE3'],
+        originblue: '#23ACE3',
+        redalert: '#FC366B',
       }
     },
   },

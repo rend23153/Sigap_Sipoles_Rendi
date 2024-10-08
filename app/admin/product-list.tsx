@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, TouchableOpacity, StyleSheet, useColorScheme, Image } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import { Ionicons } from '@expo/vector-icons';
+import { black, white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
+import { Link } from 'expo-router';
 
 // Mock data for orders
 const products = [
-  { id: '28293837',  name: 'Power Pole Large', description: 'Type 682-150',  image: require("../../assets/images/pt_wika.png")},
-  { id: '00287423',  name: 'Power Pole Medium',  description: 'Type 682-100',  image: require("../../assets/images/pt_wika.png")},
-  { id: '00287127',  name: 'Power Pole Small',  description: 'Type 682-50',  image: require("../../assets/images/pt_wika.png")},
-  { id: '09287427',  name: 'Power Pole Extra Large', description: 'Type 682-200XL',  image: require("../../assets/images/pt_wika.png")},
+  { id: '28293837',  name: 'Power Pole Large', description: 'Type 682-150',  image: require("../../assets/images/tiang.png")},
+  { id: '00287423',  name: 'Power Pole Medium',  description: 'Type 682-100',  image: require("../../assets/images/tiang.png")},
+  { id: '00287127',  name: 'Power Pole Small',  description: 'Type 682-50',  image: require("../../assets/images/tiang.png")},
+  { id: '09287427',  name: 'Power Pole Extra Large', description: 'Type 682-200XL',  image: require("../../assets/images/tiang.png")},
 ];
 
 
@@ -39,29 +42,40 @@ const ProductListScreen = () => {
           <View style={[styles.statusIndicator, { backgroundColor: cardBackgroundColor }]} >
               <Image
               source={item.image}
-              style={{ width: 80, height: 80}} // Set the image size and style
+              style={{ width: 80, height: 80, borderRadius: 10 }} // Set the image size and style
               resizeMode="contain"
             />
           </View>
           <View style={styles.orderDetails}>
-            <ThemedText className="font-omedium text-2xl">{item.name}</ThemedText>
-            <ThemedText className="font-oregular text-xl" style={styles.description}>{item.description}</ThemedText>
+            <ThemedText className="font-omedium text-lg">{item.name}</ThemedText>
+            <ThemedText className="font-oregular text-base" style={styles.description}>{item.description}</ThemedText>
             <View style={styles.statusContainer}>
-              <TouchableOpacity>
-                <ThemedText className="font-oregular text-sm" style={[styles.editText, { backgroundColor: outlineColor }]}>
+              <TouchableOpacity style={[{ backgroundColor: outlineColor }]} className='flex flex-row space-x-1 items-center p-1 rounded-md'>
+                <ThemedText className="font-oregular text-xs text-[#FAC441]">
                   Edit product
                 </ThemedText>
+                  <Ionicons name="create-outline" size={16} color={'#FAC441'} />
               </TouchableOpacity>
-              <TouchableOpacity>
-                <ThemedText className="font-oregular text-sm mx-4" style={[styles.deleteText, { backgroundColor: outlineColor }]}>
+              <TouchableOpacity style={[{ backgroundColor: outlineColor }]} className='flex flex-row space-x-1 ml-2 items-center p-1 rounded-md'>
+                <ThemedText className="font-oregular text-xs text-redalert">
                   Delete product
                 </ThemedText>
+                  <Ionicons name="trash-outline" size={16} color={'#Fc366b'} />
               </TouchableOpacity>
+              
             </View>
           </View>
         </View>
       )}
     />
+    <Link href='/admin/product-add' asChild>
+    <TouchableOpacity className='absolute bottom-10 right-5'>
+      <View style={[{backgroundColor: cardBackgroundColor, borderRadius: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 4,}]}>
+      <Ionicons name="add" size={50} color="#23ACE3" />
+
+      </View>
+    </TouchableOpacity>
+    </Link>
     </View>
   );
 };
@@ -109,11 +123,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 10,
     marginTop: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    // shadowColor: '#000',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.07,
+    // shadowRadius: 4,
+    // elevation: 3,
   },
   editText: {
     paddingVertical: 5,

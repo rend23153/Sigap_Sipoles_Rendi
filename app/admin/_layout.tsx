@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from '@/constants/Colors';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,12 +39,18 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack screenOptions={{ headerTintColor: '#23ACE3', headerShadowVisible: false, headerTitleAlign: 'center', headerBackTitleVisible: false,      headerTitleStyle: {
+            fontFamily: 'Outfit-SemiBold',
+            fontSize: 20,
+          },}}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="order-list" />
-        <Stack.Screen name="vendor-list" />
-        <Stack.Screen name="detail-order" />
-        <Stack.Screen name="product-list" />
+        <Stack.Screen name="order-list" options={{ title:'Order List'}}/>
+        <Stack.Screen name="vendor-list" options={{ title:'Vendor List'}} />
+        <Stack.Screen name="detail-order" options={{ title:'Detail Order'}}/>
+        <Stack.Screen name="product-list" options={{ title:'Product List'}}/>
+        <Stack.Screen name="account-list" options={{ title:'Account List'}}/>
+        <Stack.Screen name="vendor-add" options={{ title:'Add Vendor'}}/>
+        <Stack.Screen name="product-add" options={{ title:'Add Product'}}/>
       </Stack>
     </ThemeProvider>
   );

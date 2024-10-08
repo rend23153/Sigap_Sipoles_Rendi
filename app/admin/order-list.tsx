@@ -50,15 +50,20 @@ const OrderListScreen = () => {
         renderTabBar={props => (
           <TabBar
             {...props}
+            scrollEnabled
             indicatorStyle={{ backgroundColor: '#00ADEF' }} // Indicator color for selected tab
             style={{ backgroundColor }} // Background color of the tab bar
+            tabStyle={{
+              width: 110, // Set a fixed width for each tab item
+              justifyContent: 'center', // Center the content of each tab
+            }}
             labelStyle={{
               fontFamily: 'Outfit-Semibold', // Use the 'Outfit' font family
-              fontSize: 12,
+              fontSize: 10,
             }}
             renderLabel={({ route, focused }) => (
               <Text
-                className={`text-base font-osemibold text-sm ${
+                className={` font-osemibold text-xs ${
                   focused ? 'text-blue-500' : 'text-gray-500'
                 }`}
               >
@@ -107,13 +112,13 @@ const OrderList = ({ filter }) => {
           {/* Status indicator */}
           <View style={[styles.statusIndicator, { backgroundColor: item.statusColor }]} />
           <View style={styles.orderDetails}>
-            <ThemedText className="font-omedium text-2xl mt-3">{item.name}</ThemedText>
-            <ThemedText className="font-oregular text-sm" style={styles.description}>{item.description}</ThemedText>
+            <ThemedText className="font-omedium text-xl mt-3">{item.name}</ThemedText>
+            <ThemedText className="font-oregular text-xs" style={styles.description}>{item.description}</ThemedText>
             <View style={styles.statusContainer}>
-                <ThemedText className="font-oregular text-sm" style={[styles.statusText, { color: item.statusColor }, { backgroundColor: outlineColor }]}>
+                <ThemedText className="font-oregular text-xs" style={[styles.statusText, { color: item.statusColor }, { backgroundColor: outlineColor }]}>
                   {item.status}
                 </ThemedText>
-              <ThemedText className="font-olight text-sm" style={styles.orderId}>#ID {item.id}</ThemedText>
+              <ThemedText className="font-olight text-xs" style={styles.orderId}>#ID {item.id}</ThemedText>
             </View>
           </View>
         </View>     
@@ -152,7 +157,7 @@ const styles = StyleSheet.create({
   },
   statusIndicator: {
     marginVertical: 15,
-    width: 5,
+    width: 7,
     borderRadius: 10,
   },
   orderDetails: {

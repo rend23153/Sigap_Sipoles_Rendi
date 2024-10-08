@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, TouchableOpacity, StyleSheet, useColorScheme, Image } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 // Mock data for orders
 const vendors = [
@@ -44,20 +46,29 @@ const VendorListScreen = () => {
             />
           </View>
           <View style={styles.orderDetails}>
-            <ThemedText className="font-omedium text-2xl">{item.name}</ThemedText>
-            <ThemedText className="font-oregular text-xl" style={styles.description}>{item.description}</ThemedText>
+            <ThemedText className="font-omedium text-lg">{item.name}</ThemedText>
+            <ThemedText className="font-oregular text-base" style={styles.description}>{item.description}</ThemedText>
             <View style={styles.statusContainer}>
-              <TouchableOpacity>
-                <ThemedText className="font-oregular text-sm" style={[styles.statusText, { backgroundColor: outlineColor }]}>
-                  Edit Vendor
+            <TouchableOpacity style={[{ backgroundColor: outlineColor }]} className='flex flex-row space-x-1items-center p-1 rounded-md'>
+                <ThemedText className="font-oregular text-xs text-[#FAC441]">
+                  Edit product
                 </ThemedText>
+                  <Ionicons name="create-outline" size={16} color={'#FAC441'} />
               </TouchableOpacity>
-              <ThemedText className="font-olight text-sm" style={styles.orderId}>Registered on {item.date}</ThemedText>
+              <ThemedText className="font-olight text-xs" style={styles.orderId}>Registered on {item.date}</ThemedText>
             </View>
           </View>
         </View>
       )}
     />
+    <Link href='/admin/vendor-add' asChild>
+    <TouchableOpacity className='absolute bottom-10 right-5'>
+      <View style={[{backgroundColor: cardBackgroundColor, borderRadius: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 4,}]}>
+      <Ionicons name="add" size={50} color="#23ACE3" />
+
+      </View>
+    </TouchableOpacity>
+    </Link>
     </View>
   );
 };
@@ -104,12 +115,6 @@ const styles = StyleSheet.create({
   statusContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   statusText: {
     paddingVertical: 5,
