@@ -9,12 +9,13 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { images } from '@constants/images';
 import { styled } from 'nativewind';
 import React, { useState } from 'react';
+import { Colors } from '@/constants/Colors';
 
 
 const ProfileSettingScreen = () => {  
   const colorScheme = useColorScheme(); // Get the current color scheme
 
-  const backgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF';
+  const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
   const lineColor = colorScheme === 'dark' ? '#FFFFFF' : '#000000';
   const [focusedField, setFocusedField] = useState('');
 
@@ -30,11 +31,11 @@ const ProfileSettingScreen = () => {
     return focusedField === field ? 'border-originblue' : 'border-gray-400';
   };
 
-  const cardBackgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF'; // Card background color for dark mode
+  const cardBackgroundColor = colorScheme === 'dark' ? Colors.dark.card : Colors.light.card; // Card background color for dark mode
   
 
   return (
-    
+      
       <ScrollView
         style={{ flex: 1, minHeight: Dimensions.get('window').height, backgroundColor: backgroundColor }}
       >

@@ -8,6 +8,7 @@ import { useColorScheme } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { images } from '@constants/images';
 import { Link, LinkProps } from 'expo-router';
+import { Colors } from '@/constants/Colors';
 
 const dataFeatures = [
   {
@@ -62,9 +63,9 @@ const dataTask = [
 const HomeScreen = () => {
   const colorScheme = useColorScheme(); // Get the current color scheme
 
-  const backgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF';
-  const cardBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff'; // Card background color for dark mode
-  const dropBackgroundColor = colorScheme === 'dark' ? '#131314FF' : '#fff'; //
+  const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
+  const cardBackgroundColor = colorScheme === 'dark' ? Colors.dark.card : Colors.light.card; // Card background color for dark mode
+  const dropBackgroundColor = colorScheme === 'dark' ? Colors.dark.outline : Colors.light.outline; //
   const seperateColor = colorScheme === 'dark' ? '#FFFFFF' : '#000000'; //
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor }}>

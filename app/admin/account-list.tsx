@@ -5,6 +5,8 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Link } from 'expo-router';
 import { Colors } from '@/constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
+import { Icon } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Mock data for accounts
 const accounts = [
@@ -14,6 +16,10 @@ const accounts = [
     { id: '09287427', name: 'Haikal Al Ghifari', status: 'Drivers', verified: true, image: require("../../assets/images/gupong.png") },
     { id: '00287271', name: 'Pak Min', status: 'Employees', verified: false, image: require("../../assets/images/gupong.png") },
     { id: '09265427', name: 'Kak Gem', status: 'Drivers', verified: false, image: require("../../assets/images/gupong.png") },
+    { id: '09287127', name: 'Ghufron Akbar', status: 'Drivers', verified: true, image: require("../../assets/images/gupong.png") },
+    { id: '00187271', name: 'Rendy Septiaji', status: 'Employees', verified: true, image: require("../../assets/images/gupong.png") },
+    { id: '09215427', name: 'Raden Kurniawan Mangunkusumo', status: 'Drivers', verified: true, image: require("../../assets/images/gupong.png") },
+    { id: '18293837', name: 'Akhtar Saputra', status: 'Admin', verified: true, image: require("../../assets/images/gupong.png") },
 ];
 
 // Tab navigation setup
@@ -27,7 +33,7 @@ const TabRoutes = {
 
 const AccountListScreen = () => {
     const colorScheme = useColorScheme(); // Get the current color scheme
-    const backgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF';
+    const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background; // Adjusted for dark mode
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         { key: 'All', title: 'All' },
@@ -55,16 +61,17 @@ const AccountListScreen = () => {
                         indicatorStyle={{ backgroundColor: '#00ADEF' }} // Indicator color for selected tab
                         style={{ backgroundColor }} // Background color of the tab bar
                         tabStyle={{
-                            width: 90, // Set a fixed width for each tab item
+                            
+                            width: Math.min(Dimensions.get('window').width / 4.5), // Set a fixed width for each tab item
                             justifyContent: 'center', // Center the content of each tab
                         }}
                         labelStyle={{
                             fontFamily: 'Outfit-Semibold', // Use the 'Outfit' font family
-                            fontSize: 10,
+                            
                         }}
                         renderLabel={({ route, focused }) => (
                             <Text
-                                className={` font-osemibold text-xs ${focused ? 'text-blue-500' : 'text-gray-500'
+                                className={` flex-1 w-full font-osemibold text-sm ${focused ? 'text-blue-500' : 'text-gray-500'
                                     }`}
                             >
                                 {route.title}
@@ -82,9 +89,11 @@ const AccountListScreen = () => {
 // AccountList Component
 const AccountList = ({ filter }) => {
     const colorScheme = useColorScheme(); // Get the current color scheme
-    const searchBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff'; // Adjusted for dark mode
+    const textSearchBackgroundColor = colorScheme === 'dark' ? Colors.dark.text : Colors.light.text;
     const cardBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff'; // Card background color for dark mode
-    const outlineColor = colorScheme === 'dark' ? '#2b2b2b' : '#f0f0f0'; // Card background color for dark mode
+    const outlineColor = colorScheme === 'dark' ? Colors.dark.outline : Colors.light.outline; // Card background color for dark mode
+    const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background; // Adjusted for dark mode
+    
     const [searchText, setSearchText] = useState('');
 
     const filteredAccounts = accounts.filter(account =>
@@ -92,20 +101,25 @@ const AccountList = ({ filter }) => {
     );
 
     return (
-        <View>
-            <TextInput
-                style={[styles.searchInput, { backgroundColor: searchBackgroundColor }, { borderColor: outlineColor }]}
-                placeholder="Search account name here"
-                value={searchText}
-                onChangeText={setSearchText}
-            />
+        <SafeAreaView edges={['bottom', 'left', 'right']} style={{ flex: 1, backgroundColor }}>
+            
+            <View className={`flex-row items-center border space-x-1 rounded-lg m-3 px-3 py-1`} style={{ borderColor: outlineColor }}>
+            <Ionicons name="search-outline" size={24} color='#D1D1D1FF' />
+                <TextInput
+                    style={{ flex: 1, marginTop: -4, color: textSearchBackgroundColor }}
+                    className="text-base py-2 font-olight"
+                    placeholder="Search account name here"
+                    value={searchText}
+                    onChangeText={setSearchText}
+                />
+            </View>
             <FlatList
+            
                 data={filteredAccounts}
                 keyExtractor={item => item.id}
-                style={{minHeight: Dimensions.get('window').height - 200}}
                 renderItem={({ item }) => (
 
-                    <View style={[styles.orderCard, { backgroundColor: cardBackgroundColor }]}>
+                    <View style={[styles.orderCard, { backgroundColor: backgroundColor }]}>
                         <View style={styles.statusIndicator}>
                             <Image
                                 source={item.image}
@@ -114,7 +128,7 @@ const AccountList = ({ filter }) => {
                             />
                         </View>
                         <View style={styles.orderDetails}>
-                            <ThemedText className="font-omedium text-xl">{item.name}</ThemedText>
+                            <ThemedText className="font-omedium text-xl"  numberOfLines={1}ellipsizeMode="tail">{item.name}</ThemedText>
                             <ThemedText className="font-oregular text-lg" style={styles.description}>{item.status}</ThemedText>
                             <View style={styles.statusContainer}>
                                 <TouchableOpacity style={[{ backgroundColor: outlineColor }]} className='flex flex-row space-x-1 items-center p-1 rounded-md'>
@@ -130,33 +144,37 @@ const AccountList = ({ filter }) => {
 
                 )}
             />
-        </View>
+        </SafeAreaView>
     );
 };
 
 // RequestList Component for Unverified Accounts
 const RequestList = () => {
     const colorScheme = useColorScheme(); // Get the current color scheme
-    const searchBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff';
-    const cardBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff';
-    const outlineColor = colorScheme === 'dark' ? '#2b2b2b' : '#f0f0f0';
+    const outlineColor = colorScheme === 'dark' ? Colors.dark.outline : Colors.light.outline; // Card background color for dark mode 
+    const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background; // Adjusted for dark mode
     const [searchText, setSearchText] = useState('');
 
     const filteredAccounts = accounts.filter(account => !account.verified);
 
     return (
-        <View>
-            <TextInput
-                style={[styles.searchInput, { backgroundColor: searchBackgroundColor }, { borderColor: outlineColor }]}
-                placeholder="Search account name here"
-                value={searchText}
-                onChangeText={setSearchText}
-            />
+        <SafeAreaView edges={['bottom', 'left', 'right']} style={{ flex: 1, backgroundColor }}>
+            
+            <View className={`flex-row items-center border space-x-1 rounded-lg m-3 px-3 py-1`} style={{ borderColor: outlineColor }}>
+            <Ionicons name="search-outline" size={24} color='#D1D1D1FF' />
+                <TextInput
+                    style={{ flex: 1, marginTop: -4}}
+                    className="text-base py-2 font-olight"
+                    placeholder="Search account name here"
+                    value={searchText}
+                    onChangeText={setSearchText}
+                />
+            </View>
             <FlatList
                 data={filteredAccounts}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <View style={[styles.orderCard, { backgroundColor: cardBackgroundColor }]}>
+                    <View style={[styles.orderCard, { backgroundColor: backgroundColor }]}>
                         <View style={styles.statusIndicator}>
                             <Image
                                 source={item.image}
@@ -167,21 +185,28 @@ const RequestList = () => {
                         <View style={styles.orderDetails}>
                             <ThemedText className="font-omedium text-xl">{item.name}</ThemedText>
                             <ThemedText className="font-oregular text-lg" style={styles.description}>{item.status}</ThemedText>
-                            <View className='flex-row space-x-3 bg-white'>
+                            <View className='flex-row'>
                                 <ThemedText className="font-olight text-xs" style={styles.orderId}>Request account 25 minutes ago</ThemedText>
-                                <TouchableOpacity>
-                                    <ThemedText className="py-1.5 px-2.5 font-semibold mb-4 text-white rounded-lg" style={[{ backgroundColor: '#FC366B' }]}>X</ThemedText>
-                                </TouchableOpacity>
-                                <TouchableOpacity>
-                                    <ThemedText className="py-1.5 px-2.5 font-semibold mb-4 text-white rounded-lg" style={[{ backgroundColor: '#28A745' }]}>Y</ThemedText>
-                                </TouchableOpacity>
+                                <View className='flex-row flex-1 space-x-2 justify-end'>
+                                    <TouchableOpacity>
+                                        <View className='bg-redalert rounded-lg p-1'>
+                                            <Ionicons name="close" size={24} color={"#FFFFFF"} />
+                                        </View>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity>
+                                        <View className='bg-[#28A745] rounded-lg p-1'>
+                                            <Ionicons name="checkmark" size={24} color={"#FFFFFF"} />
+                                        </View>
+                                        
+                                    </TouchableOpacity>
+                                </View>
                             </View>
 
                         </View>
                     </View>
                 )}
             />
-        </View>
+        </SafeAreaView>
     );
 };
 

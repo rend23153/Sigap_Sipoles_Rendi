@@ -14,9 +14,9 @@ import { Link } from 'expo-router';
 
 const ProfilesScreen = () => {  
   const colorScheme = useColorScheme(); // Get the current color scheme
-  const cardBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff'; // Card background color for dark mode
+  const cardBackgroundColor = colorScheme === 'dark' ? Colors.dark.card : Colors.light.card; // Card background color for dark mode
 
-  const backgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF';
+  const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor }}>
@@ -78,41 +78,51 @@ const ProfilesScreen = () => {
 
             <Link href="/admin/profile-settings" asChild>
             <TouchableOpacity>
-            <View className="flex-row justify-between  items-center shadow-sm shadow-grey  px-2 py-1.5" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
+            <View className="flex-row  items-center shadow-sm shadow-grey  px-2 py-1.5" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
               <View className='bg-[#DEF3FB] p-2 rounded-lg'>
               <Ionicons name="create-outline" size={30} color="#23ACE3" />
               </View>
-              <View className='py-1'>
-                <ThemedText className=" mx-3 text-base font-omedium">
-                  Profile Settings
-                </ThemedText>
-                <ThemedText className=" mx-3 text-base font-oregular text-gray-400">
-                Update and modify your profile
-                </ThemedText>
-              
+              <View className='flex-row justify-between flex-1 py-1 items-center'>
+
+                <View className=''>
+                  <ThemedText className=" mx-3 text-base font-omedium">
+                    Profile Settings
+                  </ThemedText>
+                  <ThemedText className=" mx-3 text-base font-oregular text-gray-400">
+                  Update and modify your profile
+                  </ThemedText>
+                
+                </View>
+                <Ionicons name="chevron-forward-outline" size={30} color="#9ca3af" />
               </View>
-              <Ionicons name="chevron-forward-outline" size={30} color="#9ca3af" />
               
             </View>
             </TouchableOpacity>
             </Link>
 
-            <View className="flex-row justify-between  items-center shadow-sm shadow-grey  px-2 py-1.5" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
+            <Link href="index" asChild>
+            <TouchableOpacity>
+            <View className="flex-row  items-center shadow-sm shadow-grey  px-2 py-1.5" style={[{ backgroundColor: cardBackgroundColor, borderRadius: 10, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.07, shadowRadius: 4, elevation: 4, }]}>
               <View className='bg-[#FFE1E9] p-2 rounded-lg'>
               <Ionicons name="log-out" size={30} color="#FC366B" />
               </View>
-              <View className='py-1'>
-                <ThemedText className=" mx-3 text-base font-omedium">
-                  Log Out
-                </ThemedText>
-                <ThemedText className=" mx-3 text-base font-oregular text-gray-400">
-                Are you sure you want to log out?
-                </ThemedText>
-              
+              <View className='flex-row justify-between flex-1 py-1 items-center'>
+
+                <View className=''>
+                  <ThemedText className=" mx-3 text-base font-omedium">
+                    Log Out
+                  </ThemedText>
+                  <ThemedText className=" mx-3 text-base font-oregular text-gray-400">
+                  Are you sure you want to log out?
+                  </ThemedText>
+                
+                </View>
+                <Ionicons name="chevron-forward-outline" size={30} color="#9ca3af" />
               </View>
-              <Ionicons name="chevron-forward-outline" size={30} color="#9ca3af" />
               
             </View>
+            </TouchableOpacity>
+            </Link>
         
 
         

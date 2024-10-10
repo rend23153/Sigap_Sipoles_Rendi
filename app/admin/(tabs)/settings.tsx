@@ -13,9 +13,9 @@ import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 
 const SettingsScreen = () => {  
   const colorScheme = useColorScheme(); // Get the current color scheme
-  const cardBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff'; // Card background color for dark mode
+  const cardBackgroundColor = colorScheme === 'dark' ? Colors.dark.card : Colors.light.card; // Card background color for dark mode
 
-  const backgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF';
+  const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor }}>

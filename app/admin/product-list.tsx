@@ -5,6 +5,8 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Ionicons } from '@expo/vector-icons';
 import { black, white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 import { Link } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Colors } from '@/constants/Colors';
 
 // Mock data for orders
 const products = [
@@ -18,26 +20,30 @@ const products = [
 
 const ProductListScreen = () => {
   const colorScheme = useColorScheme(); // Get the current color scheme
-  const searchBackgroundColor = colorScheme === 'dark' ? '#1C1C1E' : '#fff';  // Adjusted for dark mode
-  const cardBackgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF'; // Card background color for dark mode
-  const outlineColor = colorScheme === 'dark' ? '#2b2b2b' : '#F7F7F7FF'; // Card background color for dark mode
-  const backgroundColor = colorScheme === 'dark' ? '#161719' : '#FFFFFF';
+  const cardBackgroundColor = colorScheme === 'dark' ? Colors.dark.card : Colors.light.card; // Card background color for dark mode
+  const textSearchBackgroundColor = colorScheme === 'dark' ? Colors.dark.text : Colors.light.text;
+  const outlineColor = colorScheme === 'dark' ? Colors.dark.outline : Colors.light.outline; // Card background color for dark mode
+  const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background;
   const [searchText, setSearchText] = useState('');
 
   return (
-    <View style={{ flex: 1, backgroundColor }}>
-    <TextInput className="font-omedium"
-        style={[styles.searchInput, { backgroundColor: searchBackgroundColor }, { borderColor: outlineColor }]}
-        placeholder="Search product here"
-        value={searchText}
-        onChangeText={setSearchText}
-      />
+    <SafeAreaView edges={['bottom', 'left', 'right']} style={{ flex: 1, backgroundColor }}>
+    <View className={`flex-row items-center border space-x-1 rounded-lg m-3 px-3 py-1`} style={{ borderColor: outlineColor }}>
+            <Ionicons name="search-outline" size={24} color='#D1D1D1FF' />
+                <TextInput
+                    style={{ flex: 1, marginTop: -4, color: textSearchBackgroundColor }}
+                    className="text-base py-2 font-olight"
+                    placeholder="Search product name here"
+                    value={searchText}
+                    onChangeText={setSearchText}
+                />
+            </View>
 
     <FlatList
       data={products}
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
-        <View style={[styles.orderCard, { backgroundColor: cardBackgroundColor }]}>
+        <View style={[styles.orderCard, { backgroundColor: backgroundColor }]}>
           {/* Status indicator */}
           <View style={[styles.statusIndicator, { backgroundColor: cardBackgroundColor }]} >
               <Image
@@ -76,7 +82,7 @@ const ProductListScreen = () => {
       </View>
     </TouchableOpacity>
     </Link>
-    </View>
+    </SafeAreaView>
   );
 };
 

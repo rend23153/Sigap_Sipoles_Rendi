@@ -5,14 +5,18 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
+
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/constants/Colors';
+
+
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const backgroundColor = colorScheme === 'dark' ? Colors.dark.background : Colors.light.background; // Adjusted for dark mode
   const [loaded] = useFonts({
     SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
     'Outfit-Thin': require('../../assets/fonts/Outfit-Thin.ttf'),
@@ -39,7 +43,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerTintColor: '#23ACE3', headerShadowVisible: false, headerTitleAlign: 'center', headerBackTitleVisible: false,  headerTitleStyle: {
+      <Stack screenOptions={{ headerTintColor:  '#23ACE3', headerStyle: {
+                backgroundColor: backgroundColor, // Set the header background color here
+            }, headerShadowVisible: false, headerTitleAlign: 'center', headerBackTitleVisible: false,  headerTitleStyle: {
             fontFamily: 'Outfit-SemiBold',
             fontSize: 20,
           },}}>
