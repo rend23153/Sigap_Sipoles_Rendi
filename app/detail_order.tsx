@@ -16,10 +16,11 @@ export default function DetailOrder() {
 
   // Track order options
   const trackOrders = [
-    { key: 'orderRecieve', label: 'Order Recieve' },
-    { key: 'departure', label: 'Departure' },
-    { key: 'orderHasArrived', label: 'Order Has Arrived' },
-    { key: 'completeInstallation', label: 'Complete Installation' }
+    { key: 'orderRecieve', label: 'Order Recieve', time: '11.00 WIB', date: '24/09/2024', status: 'Belum Di Proses' },
+    { key: 'departure', label: 'Departure', time: '12.30 WIB', date: '24/09/2024', status: 'Sedang Dikirim' },
+    { key: 'orderHasArrived', label: 'Order Has Arrived', time: '15.00 WIB', date: '25/09/2024', status: 'Telah Sampai' },
+    { key: 'Installation', label: 'Installation', time: '16.00 WIB', date: '26/09/2024', status: 'Sedang memasang' },
+    { key: 'completeInstallation', label: 'Complete Installation', time: '17.00 WIB', date: '27/09/2024', status: 'Selesai' }
   ];
 
   const handleTrackClick = (trackKey: string) => {
@@ -91,13 +92,13 @@ export default function DetailOrder() {
                     {/* Left Content: Title and Subtext */}
                     <View style={styles.trackInfo}>
                       <ThemedText className='text-xl lg:text-4xl' style={styles.orderText}>{track.label}</ThemedText>
-                      <ThemedText className='text-sm lg:text-xl' style={styles.orderSubText}>Belum Di Proses</ThemedText>
+                      <ThemedText className='text-sm lg:text-xl' style={styles.orderSubText}>{track.status}</ThemedText>
                     </View>
 
                     {/* Right Content: Time and Date */}
                     <View style={styles.dateTimeContainer}>
-                      <ThemedText className='text-sm lg:text-2xl' style={styles.timeText}>11.00 WIB</ThemedText>
-                      <ThemedText className='text-sm lg:text-2xl' style={styles.dateText}>24/09/2024</ThemedText>
+                      <ThemedText className='text-sm lg:text-2xl' style={styles.timeText}>{track.time}</ThemedText>
+                      <ThemedText className='text-sm lg:text-2xl' style={styles.dateText}>{track.date}</ThemedText>
                     </View>
                   </View>
 
