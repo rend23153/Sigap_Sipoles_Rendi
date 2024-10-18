@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image, View, TouchableOpacity, Dimensions, } from 'react-native';
-import { Link, router } from 'expo-router';
+import {  Link, router } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { TextInput } from 'react-native-paper'; // Import TextInput dari react-native-paper
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
@@ -90,7 +90,7 @@ export default function SignIn() {
             activeOutlineColor="#23ACE3"
           />
 
-          <TouchableOpacity style={dynamicStyles.button} onPress={() => router.push("/detail_alamat")}>
+          <TouchableOpacity style={dynamicStyles.button} onPress={() => router.push("/detail_fvendor")}>
             <ThemedText style={dynamicStyles.buttonText}>Sign In</ThemedText>
           </TouchableOpacity>
 
