@@ -90,7 +90,7 @@ export default function SignIn() {
             activeOutlineColor="#23ACE3"
           />
 
-          <TouchableOpacity style={dynamicStyles.button} onPress={() => router.push("/detail_fvendor")}>
+          <TouchableOpacity style={dynamicStyles.button} onPress={() => router.push("/swap")}>
             <ThemedText style={dynamicStyles.buttonText}>Sign In</ThemedText>
           </TouchableOpacity>
 
